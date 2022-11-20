@@ -4,10 +4,7 @@ from primary import if_prime
 from invert_image import invert
 from login import User, get_current_user, Token, users_db, authenticate_user, ACCESS_TOKEN_EXPIRE_MINUTES, create_access_token
 from fastapi.responses import StreamingResponse
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from pydantic import BaseModel
-from jose import JWTError, jwt
-from passlib.context import CryptContext
+from fastapi.security import OAuth2PasswordRequestForm
 from datetime import datetime, timedelta
 
 app = FastAPI()
@@ -42,8 +39,8 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 async def get_time(current_user: User = Depends(get_current_user)):
     return datetime.now().strftime("%H:%M:%S")
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="127.0.0.1", port=8000)
 
 
 
